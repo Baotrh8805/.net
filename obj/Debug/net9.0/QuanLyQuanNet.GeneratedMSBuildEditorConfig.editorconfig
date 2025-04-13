@@ -1,0 +1,105 @@
+is_global = true
+build_property.TargetFramework = net9.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = QuanLyQuanNet
+build_property.RootNamespace = QuanLyQuanNet
+build_property.ProjectDir = /Users/thinguyen/TL_ky_3/lap trinh.NET/Project/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 9.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /Users/thinguyen/TL_ky_3/lap trinh.NET/Project
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 9.0
+build_property.EnableCodeStyleSeverity = 
+
+[/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/Admin/ChinhSuaMayTinh.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vQ2hpbmhTdWFNYXlUaW5oLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/Admin/ChinhSuaNguoiDung.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vQ2hpbmhTdWFOZ3VvaUR1bmcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/Admin/Home.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vSG9tZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/Admin/QuanLyMayTinh.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vUXVhbkx5TWF5VGluaC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/Admin/QuanLyNguoiDung.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vUXVhbkx5Tmd1b2lEdW5nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/Admin/ThemMayTinh.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vVGhlbU1heVRpbmguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/Admin/ThemNguoiDUng.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vVGhlbU5ndW9pRFVuZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/Admin/XoaMayTinh.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vWG9hTWF5VGluaC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/Admin/XoaTaiKhoan.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vWG9hVGFpS2hvYW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/Home/AccessDenied.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9BY2Nlc3NEZW5pZWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/Home/DangKy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9EYW5nS3kuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/Home/DangNhap.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9EYW5nTmhhcC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/KhachHang/ChonMay.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvS2hhY2hIYW5nL0Nob25NYXkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/KhachHang/Home.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvS2hhY2hIYW5nL0hvbWUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-rgjmj3hd6i

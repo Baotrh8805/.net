@@ -1,0 +1,56 @@
+@model List<Project.Data.MayTinh>
+
+@{
+    ViewData["Title"] = "Chọn máy sử dụng";
+}
+
+<div class="container mt-4">
+    <h2>Chọn máy để sử dụng</h2>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+    }
+
+    <table class="table table-bordered mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>Mã máy</th>
+                <th>Tên máy</th>
+                <th>Trạng thái</th>
+                <th>Đơn giá</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var may in Model)
+            {
+                <tr>
+                    <td>@may.MaMay</td>
+                    <td>@may.TenMay</td>
+                    <td>@may.TrangThai</td>
+                    <td>@may.DonGia.ToString("N0") VNĐ</td>
+                    <td>
+                       @if (may.TrangThai?.Trim().ToLower() == "sẵn sàng")
+                        {
+                            <form asp-action="DatMay" method="post">
+                                <input type="hidden" name="maMay" value="@may.MaMay" />
+                                <button type="submit" class="btn btn-success btn-sm">Đặt máy</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <span class="text-danger">Đang sử dụng</span>
+                        }
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
