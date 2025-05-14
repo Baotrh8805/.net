@@ -4,6 +4,20 @@
     ViewData["Title"] = "Quản lý người dùng";
     var tenQuanTriVien = User.Claims.FirstOrDefault(c => c.Type == "HoTen")?.Value;
 }
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+        <i class="bi bi-check-circle me-2"></i> @TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+        <i class="bi bi-exclamation-circle me-2"></i> @TempData["Error"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
 
 <div class="container-fluid">
     <!-- Thanh ngang trên cùng -->
@@ -21,22 +35,40 @@
         <div class="col-md-3 bg-light vh-100">
             <h5 class="mt-3">Chức năng</h5>
             <ul class="list-group">
-                <li class="list-group-item">
-                    <a href="/Admin/Home" class="text-decoration-none">Home</a>
-                </li>
-                <li class="list-group-item">
-                    <a href="/Admin/QuanLyNguoiDung" class="text-decoration-none">Quản lý người dùng</a>
-                </li>
-                <li class="list-group-item">
-                    <a href="/Admin/QuanLyMayTinh" class="text-decoration-none">Quản lý máy tính</a>
-                </li>
-                <li class="list-group-item">
-                    <a href="/Admin/DoanhThu" class="text-decoration-none">Doanh thu</a>
-                </li>
-                <li class="list-group-item">
-                    <a href="/Admin/ThongKe" class="text-decoration-none">Thống kê</a>
-                </li>
-            </ul>
+    <li class="list-group-item border-0">
+        <a href="/Admin/Home" class="text-decoration-none d-flex align-items-center">
+            <i class="bi bi-house-door-fill me-2 text-primary"></i> Home
+        </a>
+    </li>
+    <li class="list-group-item border-0">
+        <a href="/Admin/QuanLyNguoiDung" class="text-decoration-none d-flex align-items-center">
+            <i class="bi bi-people-fill me-2 text-success"></i> Quản lý người dùng
+        </a>
+    </li>
+    <li class="list-group-item border-0">
+        <a href="/Admin/QuanLyMayTinh" class="text-decoration-none d-flex align-items-center">
+            <i class="bi bi-pc-display-horizontal me-2 text-warning"></i> Quản lý máy tính
+        </a>
+    </li>
+    <li class="list-group-item border-0">
+        <a href="#" class="text-decoration-none d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#thongKeSubMenu" aria-expanded="false" aria-controls="thongKeSubMenu">
+            <i class="bi bi-bar-chart-fill me-2 text-danger"></i> Thống kê doanh thu
+            <i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul class="collapse list-group ms-3 mt-2" id="thongKeSubMenu">
+            <li class="list-group-item border-0">
+                <a href="/Admin/ThongKeTheoThoiGian" class="text-decoration-none d-flex align-items-center">
+                    <i class="bi bi-calendar-range me-2 text-secondary"></i> Theo thời gian
+                </a>
+            </li>
+            <li class="list-group-item border-0">
+                <a href="/Admin/ThongKeTheoMay" class="text-decoration-none d-flex align-items-center">
+                    <i class="bi bi-laptop me-2 text-secondary"></i> Theo máy
+                </a>
+            </li>
+        </ul>
+    </li>
+</ul>
         </div>
 
         <!-- Nội dung chính -->
@@ -44,6 +76,10 @@
             <div class="container mt-4">
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h2 class="text-primary">Quản lý người dùng</h2>
+                    <form method="get" action="/Admin/QuanLyNguoiDung" class="d-flex">
+                        <input type="text" name="search" class="form-control me-2" placeholder="Tìm kiếm người dùng..." value="@ViewData["Search"]" />
+                        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                    </form>
                     <a href="/Admin/ThemNguoiDung" class="btn btn-success">+ Thêm tài khoản</a>
                 </div>
 
@@ -74,7 +110,11 @@
                                     <td>@user.Role</td>
                                     <td>
                                         <a href="/Admin/ChinhSuaNguoiDung/@user.MaNguoiDung" class="btn btn-warning btn-sm">Chỉnh sửa</a>
-                                        <a href="/Admin/XoaNguoiDung/@user.MaNguoiDung" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng này?');">Xóa</a>
+                                        <a href="@Url.Action("XoaNguoiDung", "Admin", new { userId = user.MaNguoiDung })" 
+                                          class="btn btn-danger btn-sm">
+                                            Xóa
+                                        </a>  
+                                                                  
                                     </td>
                                 </tr>
                                 stt++; // Tăng STT

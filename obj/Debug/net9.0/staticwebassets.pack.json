@@ -5,12 +5,24 @@
       "PackagePath": "staticwebassets/QuanLyQuanNet.8i4tx6h7gu.bundle.scp.css"
     },
     {
+      "Id": "/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/wwwroot/css/index.css",
+      "PackagePath": "staticwebassets/css/index.css"
+    },
+    {
       "Id": "/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/wwwroot/css/site.css",
       "PackagePath": "staticwebassets/css/site.css"
     },
     {
       "Id": "/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/wwwroot/favicon.ico",
       "PackagePath": "staticwebassets/favicon.ico"
+    },
+    {
+      "Id": "/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/wwwroot/images/anh_net.png",
+      "PackagePath": "staticwebassets/images/anh_net.png"
+    },
+    {
+      "Id": "/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/wwwroot/images/maqr.png",
+      "PackagePath": "staticwebassets/images/maqr.png"
     },
     {
       "Id": "/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/wwwroot/js/site.js",

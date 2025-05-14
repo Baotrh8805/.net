@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Af8lkHEYsMKrBySsELb3KK+Nym58Mjejnew/HyvVmKI=",
+  "Hash": "IsJ7w9aggN+WOBomBMkofKZeN16JHBnpE5f/jjV0ICI=",
   "Source": "QuanLyQuanNet",
   "BasePath": "_content/QuanLyQuanNet",
   "Mode": "Default",
@@ -99,6 +99,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/obj/Debug/net9.0/scopedcss/bundle/QuanLyQuanNet.styles.css"
+    },
+    {
+      "Identity": "/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/obj/Debug/net9.0/compressed/1u068i7dsr-5ipweew5fc.gz",
+      "SourceId": "QuanLyQuanNet",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/obj/Debug/net9.0/compressed/",
+      "BasePath": "_content/QuanLyQuanNet",
+      "RelativePath": "css/index#[.{fingerprint=5ipweew5fc}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/wwwroot/css/index.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "5ipweew5fc",
+      "Integrity": "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/wwwroot/css/index.css"
     },
     {
       "Identity": "/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/obj/Debug/net9.0/compressed/214sidzeal-8i4tx6h7gu.gz",
@@ -1403,6 +1424,27 @@
       "OriginalItemSpec": "/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/obj/Debug/net9.0/scopedcss/projectbundle/QuanLyQuanNet.bundle.scp.css"
     },
     {
+      "Identity": "/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/wwwroot/css/index.css",
+      "SourceId": "QuanLyQuanNet",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/wwwroot/",
+      "BasePath": "_content/QuanLyQuanNet",
+      "RelativePath": "css/index#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "5ipweew5fc",
+      "Integrity": "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/index.css"
+    },
+    {
       "Identity": "/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/wwwroot/css/site.css",
       "SourceId": "QuanLyQuanNet",
       "SourceType": "Discovered",
@@ -1443,6 +1485,48 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/favicon.ico"
+    },
+    {
+      "Identity": "/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/wwwroot/images/anh_net.png",
+      "SourceId": "QuanLyQuanNet",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/wwwroot/",
+      "BasePath": "_content/QuanLyQuanNet",
+      "RelativePath": "images/anh_net#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "190nfuf2mx",
+      "Integrity": "BXh4ZPq7kUAqr0o8WlWolq6FH0k4vMFCxvNVNT8qufY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/anh_net.png"
+    },
+    {
+      "Identity": "/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/wwwroot/images/maqr.png",
+      "SourceId": "QuanLyQuanNet",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/wwwroot/",
+      "BasePath": "_content/QuanLyQuanNet",
+      "RelativePath": "images/maqr#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "z1h1bq2v8n",
+      "Integrity": "aYDkaiiTTv65CyS+AUjKKK83PRgohWcub4bzsbgy+Cg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/maqr.png"
     },
     {
       "Identity": "/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/wwwroot/js/site.js",
@@ -2728,6 +2812,304 @@
   ],
   "Endpoints": [
     {
+      "Route": "css/index.5ipweew5fc.css",
+      "AssetFile": "/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/obj/Debug/net9.0/compressed/1u068i7dsr-5ipweew5fc.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "1.000000000000"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "0"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 14 Apr 2025 15:22:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "5ipweew5fc"
+        },
+        {
+          "Name": "label",
+          "Value": "css/index.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+        }
+      ]
+    },
+    {
+      "Route": "css/index.5ipweew5fc.css",
+      "AssetFile": "/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/wwwroot/css/index.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "0"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 14 Apr 2025 15:22:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "5ipweew5fc"
+        },
+        {
+          "Name": "label",
+          "Value": "css/index.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+        }
+      ]
+    },
+    {
+      "Route": "css/index.5ipweew5fc.css.gz",
+      "AssetFile": "/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/obj/Debug/net9.0/compressed/1u068i7dsr-5ipweew5fc.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "0"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 14 Apr 2025 15:22:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "5ipweew5fc"
+        },
+        {
+          "Name": "label",
+          "Value": "css/index.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+        }
+      ]
+    },
+    {
+      "Route": "css/index.css",
+      "AssetFile": "/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/obj/Debug/net9.0/compressed/1u068i7dsr-5ipweew5fc.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "1.000000000000"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "0"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 14 Apr 2025 15:22:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+        }
+      ]
+    },
+    {
+      "Route": "css/index.css",
+      "AssetFile": "/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/wwwroot/css/index.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "0"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 14 Apr 2025 15:22:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+        }
+      ]
+    },
+    {
+      "Route": "css/index.css.gz",
+      "AssetFile": "/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/obj/Debug/net9.0/compressed/1u068i7dsr-5ipweew5fc.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "0"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 14 Apr 2025 15:22:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+        }
+      ]
+    },
+    {
       "Route": "css/site.b9sayid5wm.css",
       "AssetFile": "/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/obj/Debug/net9.0/compressed/ocsu8uzm39-b9sayid5wm.gz",
       "Selectors": [
@@ -3320,6 +3702,170 @@
         {
           "Name": "integrity",
           "Value": "sha256-+/824NtfTA0L7Mr42Fo+86YJP4R5cigdi9S7Fx5VVl4="
+        }
+      ]
+    },
+    {
+      "Route": "images/anh_net.190nfuf2mx.png",
+      "AssetFile": "/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/wwwroot/images/anh_net.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "517750"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BXh4ZPq7kUAqr0o8WlWolq6FH0k4vMFCxvNVNT8qufY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 14 Apr 2025 14:40:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "190nfuf2mx"
+        },
+        {
+          "Name": "label",
+          "Value": "images/anh_net.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-BXh4ZPq7kUAqr0o8WlWolq6FH0k4vMFCxvNVNT8qufY="
+        }
+      ]
+    },
+    {
+      "Route": "images/anh_net.png",
+      "AssetFile": "/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/wwwroot/images/anh_net.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "517750"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BXh4ZPq7kUAqr0o8WlWolq6FH0k4vMFCxvNVNT8qufY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 14 Apr 2025 14:40:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-BXh4ZPq7kUAqr0o8WlWolq6FH0k4vMFCxvNVNT8qufY="
+        }
+      ]
+    },
+    {
+      "Route": "images/maqr.png",
+      "AssetFile": "/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/wwwroot/images/maqr.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "352230"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"aYDkaiiTTv65CyS+AUjKKK83PRgohWcub4bzsbgy+Cg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 14 Apr 2025 12:48:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-aYDkaiiTTv65CyS+AUjKKK83PRgohWcub4bzsbgy+Cg="
+        }
+      ]
+    },
+    {
+      "Route": "images/maqr.z1h1bq2v8n.png",
+      "AssetFile": "/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/wwwroot/images/maqr.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "352230"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"aYDkaiiTTv65CyS+AUjKKK83PRgohWcub4bzsbgy+Cg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 14 Apr 2025 12:48:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "z1h1bq2v8n"
+        },
+        {
+          "Name": "label",
+          "Value": "images/maqr.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-aYDkaiiTTv65CyS+AUjKKK83PRgohWcub4bzsbgy+Cg="
         }
       ]
     },

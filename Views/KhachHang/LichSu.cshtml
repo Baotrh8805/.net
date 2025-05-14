@@ -1,0 +1,41 @@
+@model IEnumerable<Project.Models.KhachHang.LichSuSuDungViewModel>
+
+@{
+    ViewData["Title"] = "Lịch sử sử dụng";
+}
+
+<div class="container mt-4">
+    <h3>Lịch sử sử dụng</h3>
+    <table class="table table-bordered mt-3">
+        <thead class="table-primary">
+            <tr>
+                <th>Tên máy</th>
+                <th>Thời gian bắt đầu</th>
+                <th>Thời gian kết thúc</th>
+                <th>Tổng thời gian (phút)</th>
+                <th>Tổng tiền (VNĐ)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.TenMay</td>
+                        <td>@item.ThoiGianBatDau?.ToString("HH:mm:ss dd/MM/yyyy")</td>
+                        <td>@item.ThoiGianKetThuc?.ToString("HH:mm:ss dd/MM/yyyy")</td>
+                        <td>@item.TongThoiGian?.ToString("N2")</td> <!-- Làm tròn 2 chữ số thập phân -->
+                        <td>@item.TongTien?.ToString("N0")</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" class="text-center">Không có lịch sử sử dụng.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

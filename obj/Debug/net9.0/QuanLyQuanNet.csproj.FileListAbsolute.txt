@@ -170,3 +170,4 @@
 /Users/thinguyen/TL_ky_3/lap trinh.NET/Project/obj/Debug/net9.0/QuanLyQuanNet.pdb
 /Users/thinguyen/TL_ky_3/lap trinh.NET/Project/obj/Debug/net9.0/QuanLyQuanNet.genruntimeconfig.cache
 /Users/thinguyen/TL_ky_3/lap trinh.NET/Project/obj/Debug/net9.0/ref/QuanLyQuanNet.dll
+/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/obj/Debug/net9.0/compressed/1u068i7dsr-5ipweew5fc.gz

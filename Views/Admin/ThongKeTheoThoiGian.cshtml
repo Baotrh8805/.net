@@ -1,22 +1,8 @@
-@model List<Project.Models.Admin.QuanLyMayTinhViewModel>
+@model List<Project.Models.Admin.ThongKeViewModel>
 
 @{
-    ViewData["Title"] = "Quản lý máy tính";
+    ViewData["Title"] = "Thống kê theo thời gian";
     var tenQuanTriVien = User.Claims.FirstOrDefault(c => c.Type == "HoTen")?.Value;
-}
-@if (TempData["Success"] != null)
-{
-    <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-        <i class="bi bi-check-circle me-2"></i> @TempData["Success"]
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-}
-@if (TempData["Error"] != null)
-{
-    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-        <i class="bi bi-exclamation-circle me-2"></i> @TempData["Error"]
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
 }
 
 <div class="container-fluid">
@@ -73,55 +59,59 @@
 
         <!-- Nội dung chính -->
         <div class="col-md-9">
-            <div class="container mt-4">
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h2 class="text-primary">Quản lý máy tính</h2>
-                </div>
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <form method="get" action="/Admin/QuanLyMayTinh" class="d-flex">
-                        <input type="text" name="search" class="form-control me-2" placeholder="Tìm kiếm máy tính..." value="@ViewData["Search"]" />
-                        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
-                    </form>
-                    <a href="/Admin/ThemMayTinh" class="btn btn-success">+ Thêm máy tính</a>
-                </div>
+            <div class="container mt-5">
+                <h2 class="text-center text-primary mb-4">Thống kê theo thời gian</h2>
 
+                <!-- Form chọn khoảng thời gian -->
+                <form method="get" action="/Admin/ThongKeTheoThoiGian" class="mb-4">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label for="startDate" class="form-label">Ngày bắt đầu</label>
+                            <input type="date" id="startDate" name="startDate" class="form-control" value="@ViewData["StartDate"]" />
+                        </div>
+                        <div class="col-md-5">
+                            <label for="endDate" class="form-label">Ngày kết thúc</label>
+                            <input type="date" id="endDate" name="endDate" class="form-control" value="@ViewData["EndDate"]" />
+                        </div>
+                        <div class="col-md-2 d-flex align-items-end">
+                            <button type="submit" class="btn btn-primary w-100">Lọc</button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Bảng thống kê -->
                 <table class="table table-bordered table-hover text-center">
                     <thead class="table-primary">
                         <tr>
                             <th>STT</th>
                             <th>Mã máy</th>
                             <th>Tên máy</th>
-                            <th>Trạng thái</th>
-                            <th>Đơn giá</th>
-                            <th>Mô tả</th>
-                            <th>Hành động</th>
+                            <th>Doanh thu</th>
+                            <th>Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
                         @if (Model != null && Model.Count > 0)
                         {
-                            int stt = 1; // Biến đếm STT
-                            foreach (var may in Model)
+                            int stt = 1;
+                            foreach (var item in Model)
                             {
                                 <tr>
                                     <td>@stt</td>
-                                    <td>@may.MaMay</td>
-                                    <td>@may.TenMay</td>
-                                    <td>@may.TrangThai</td>
-                                    <td>@may.DonGia VNĐ</td>
-                                    <td>@may.MoTa</td>
+                                    <td>@item.MaMay</td>
+                                    <td>@item.TenMay</td>
+                                    <td>@item.TongDoanhThu.ToString("N2") VNĐ</td>
                                     <td>
-                                        <a href="/Admin/ChinhSuaMayTinh/@may.MaMay" class="btn btn-warning btn-sm">Chỉnh sửa</a>
-                                        <a href="/Admin/XoaMayTinh/@may.MaMay" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa máy tính này?');">Xóa</a>
+                                        <a href="/Admin/ThongKeChiTietThoiGian?maMay=@item.MaMay" class="btn btn-info btn-sm">Xem chi tiết</a>
                                     </td>
                                 </tr>
-                                stt++; // Tăng STT
+                                stt++;
                             }
                         }
                         else
                         {
                             <tr>
-                                <td colspan="6" class="text-center">Không có máy tính nào.</td>
+                                <td colspan="7" class="text-center">Không có dữ liệu thống kê.</td>
                             </tr>
                         }
                     </tbody>
@@ -130,3 +120,26 @@
         </div>
     </div>
 </div>
+
+<style>
+    h2 {
+        font-weight: bold;
+    }
+
+    .table {
+        font-size: 16px;
+    }
+
+    .table th {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .btn {
+        font-size: 14px;
+    }
+
+    .vh-100 {
+        height: 100vh;
+    }
+</style>

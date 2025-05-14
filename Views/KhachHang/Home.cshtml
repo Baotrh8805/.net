@@ -4,6 +4,22 @@
     ViewData["Title"] = "Trang chủ Khách hàng";
 }
 
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+        <i class="bi bi-check-circle me-2"></i> @TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+        <i class="bi bi-exclamation-circle me-2"></i> @TempData["Error"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
 <div class="container-fluid">
     <!-- Thanh ngang trên cùng -->
     <div class="row bg-primary text-white py-2">
@@ -20,12 +36,49 @@
         <div class="col-md-3 bg-light vh-100">
             <h5 class="mt-3">Chức năng</h5>
             <ul class="list-group">
-                
-                    <a href="/KhachHang/ChonMay" class="text-decoration-none"><li class="list-group-item">Chọn máy</li></a>
-                    <a href="/KhachHang/LichSu" class="text-decoration-none"> <li class="list-group-item">lịch sử sử dụng </li></a>
-                    <a href="/KhachHang/NapTien" class="text-decoration-none"> <li class="list-group-item">Nạp tiền </li> </a>
-                    <a href="/KhachHang/HoTro" class="text-decoration-none"><li class="list-group-item">Liên hệ hỗ trợ </li></a>         
-            </ul>
+    @if (!Model.DangSuDungMay)
+    {
+        <!-- Hiển thị nút "Chọn máy" nếu người dùng không sử dụng máy -->
+         <a href="/KhachHang/ChonMay" class="list-group-item list-group-item-action d-flex align-items-center">
+            <i class="bi bi-plus-circle me-2 text-primary"></i> Chọn máy
+        </a>
+    }
+    else
+    {
+        <!-- Hiển thị bảng thông tin nếu người dùng đang sử dụng máy -->
+        <div class="card mt-3">
+            <div class="card-header bg-warning text-dark">
+                <i class="bi bi-info-circle me-2"></i> Thông tin sử dụng máy
+            </div>
+            <div class="card-body">
+                <p><strong>Thời gian bắt đầu:</strong> @Model.ThoiGianBatDau?.ToString("HH:mm:ss dd/MM/yyyy")</p>
+                <p><strong>Thời gian sử dụng:</strong> <h6 id="thoiGianSuDung"></h6></p>
+                <p><strong>Chi phí sử dụng:</strong> <h6 id="chiPhi"></h6></p>
+                <p><strong>Số dư hiện tại:</strong> <h6 id="soDuHienTai"></h6></p>
+                <form asp-action="KetThucSuDung" method="post">
+                    <button type="submit" class="btn btn-danger">
+                        <i class="bi bi-x-circle me-2"></i> Kết thúc sử dụng
+                    </button>
+                </form>
+            </div>
+        </div>
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger mt-3">
+                <i class="bi bi-exclamation-triangle me-2"></i> @TempData["Error"]
+            </div>
+        }
+    }
+ 
+      
+        <a href="/KhachHang/LichSu" class="list-group-item list-group-item-action d-flex align-items-center">
+            <i class="bi bi-clock-history me-2 text-secondary"></i> Lịch sử sử dụng
+        </a>
+        <a href="/KhachHang/NapTien" class="list-group-item list-group-item-action d-flex align-items-center">
+            <i class="bi bi-wallet2 me-2 text-success"></i> Nạp tiền
+        </a>
+  
+</ul>
         </div>
         <!-- Nội dung chính -->
         <div class="col-md-9">
@@ -38,10 +91,42 @@
                     <div class="card-body">
                         <p><strong>Họ và tên:</strong> @Model.HoTen</p>
                         <p><strong>Số điện thoại:</strong> @Model.SoDienThoai</p>
-                        <p><strong>Số dư:</strong> @Model.SoDu VNĐ</p>
+                        <p><strong>Số dư hiện tại:</strong> @Model.SoDu.ToString("N0") VNĐ</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    function updateThoiGianSuDung() {
+        fetch('/KhachHang/GetThongTinSuDung')
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Update the UI with the new time
+                    document.getElementById('thoiGianSuDung').innerText = data.thoiGianSuDung.toFixed(2) + " phút";
+                    document.getElementById('chiPhi').innerText = data.chiPhi + " VNĐ";
+                    document.getElementById('soDuHienTai').innerText = data.soDuHienTai + " VNĐ";
+                } else {
+                    console.error(data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    // Call the function every 1 second
+    setInterval(function () {
+    $.get('/KhachHang/GetThongTinSuDung', function (data) {
+        if (data.success) {
+            $('#thoiGianSuDung').text(data.thoiGianSuDung.toFixed(2) + ' phút');
+            $('#chiPhi').text(data.chiPhi.toFixed(2) + ' VNĐ');
+            $('#soDuHienTai').text(data.soDuHienTai.toFixed(2) + ' VNĐ');
+        } else {
+            alert(data.message);
+            window.location.href = '/KhachHang/Home'; // Chuyển hướng về trang chủ
+        }
+    });
+}, 1000); // Gọi API mỗi 1 giây
+</script>

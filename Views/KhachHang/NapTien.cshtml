@@ -1,0 +1,49 @@
+@{
+    ViewData["Title"] = "Nạp tiền";
+}
+
+<div class="container mt-4">
+    <h3 class="text-center">Nạp tiền</h3>
+    <div class="card mt-3">
+        <div class="card-header bg-primary text-white">
+            Thông tin nạp tiền
+        </div>
+        <div class="card-body">
+            <p><strong>Ngân hàng:</strong> Vietcombank</p>
+            <p><strong>Số tài khoản:</strong> 123456789</p>
+            <p><strong>Chủ tài khoản:</strong> Quán NET Thiên Đường</p>
+            <div class="text-center">
+                <img src="/images/maqr.png" alt="QR Code" class="img-fluid" style="max-width: 200px;">
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-3">
+        <div class="card-header bg-success text-white">
+            Xác nhận nạp tiền
+        </div>
+        <div class="card-body">
+            <form asp-action="NapTien" method="post">
+                <div class="mb-3">
+                    <label for="soTien" class="form-label">Số tiền nạp (VNĐ):</label>
+                    <input type="number" class="form-control" id="soTien" name="soTien" min="10000" step="1000" required>
+                </div>
+                <button type="submit" class="btn btn-success">Xác nhận nạp tiền</button>
+            </form>
+        </div>
+    </div>
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger mt-3">
+            @TempData["Error"]
+        </div>
+    }
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success mt-3">
+            @TempData["Success"]
+        </div>
+    }
+</div>

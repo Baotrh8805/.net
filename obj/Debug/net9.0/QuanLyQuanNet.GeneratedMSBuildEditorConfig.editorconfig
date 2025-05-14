@@ -44,16 +44,32 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vVGhlbU1heVRpbmguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/Admin/ThemNguoiDUng.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vVGhlbU5ndW9pRFVuZy5jc2h0bWw=
+[/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/Admin/ThemNguoiDung.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vVGhlbU5ndW9pRHVuZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/Admin/ThongKeChiTietMay.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vVGhvbmdLZUNoaVRpZXRNYXkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/Admin/ThongKeChiTietThoiGian.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vVGhvbmdLZUNoaVRpZXRUaG9pR2lhbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/Admin/ThongKeTheoMay.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vVGhvbmdLZVRoZW9NYXkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/Admin/ThongKeTheoThoiGian.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vVGhvbmdLZVRoZW9UaG9pR2lhbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/Admin/XoaMayTinh.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vWG9hTWF5VGluaC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/Admin/XoaTaiKhoan.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vWG9hVGFpS2hvYW4uY3NodG1s
+[/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/Admin/XoaNguoiDung.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vWG9hTmd1b2lEdW5nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/Home/AccessDenied.cshtml]
@@ -72,16 +88,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/KhachHang/ChonMay.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvS2hhY2hIYW5nL0Nob25NYXkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/KhachHang/Home.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvS2hhY2hIYW5nL0hvbWUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/KhachHang/LichSu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvS2hhY2hIYW5nL0xpY2hTdS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/KhachHang/NapTien.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvS2hhY2hIYW5nL05hcFRpZW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/thinguyen/TL_ky_3/lap trinh.NET/Project/Views/Shared/Error.cshtml]

@@ -1,22 +1,8 @@
-@model List<Project.Models.Admin.QuanLyMayTinhViewModel>
+@model List<Project.Models.Admin.ThongKeViewModel>
 
 @{
-    ViewData["Title"] = "Quản lý máy tính";
+    ViewData["Title"] = "Thống kê theo máy";
     var tenQuanTriVien = User.Claims.FirstOrDefault(c => c.Type == "HoTen")?.Value;
-}
-@if (TempData["Success"] != null)
-{
-    <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-        <i class="bi bi-check-circle me-2"></i> @TempData["Success"]
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-}
-@if (TempData["Error"] != null)
-{
-    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-        <i class="bi bi-exclamation-circle me-2"></i> @TempData["Error"]
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
 }
 
 <div class="container-fluid">
@@ -73,18 +59,14 @@
 
         <!-- Nội dung chính -->
         <div class="col-md-9">
-            <div class="container mt-4">
+            <div class="container mt-5">
+                <h2 class="text-center text-primary mb-4">Thống kê theo máy</h2>
+            
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h2 class="text-primary">Quản lý máy tính</h2>
+                    <a href="/Admin/Home" class="btn btn-secondary">Quay lại</a>
+                    <button class="btn btn-success" onclick="window.print()">In báo cáo</button>
                 </div>
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <form method="get" action="/Admin/QuanLyMayTinh" class="d-flex">
-                        <input type="text" name="search" class="form-control me-2" placeholder="Tìm kiếm máy tính..." value="@ViewData["Search"]" />
-                        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
-                    </form>
-                    <a href="/Admin/ThemMayTinh" class="btn btn-success">+ Thêm máy tính</a>
-                </div>
-
+            
                 <table class="table table-bordered table-hover text-center">
                     <thead class="table-primary">
                         <tr>
@@ -92,36 +74,37 @@
                             <th>Mã máy</th>
                             <th>Tên máy</th>
                             <th>Trạng thái</th>
-                            <th>Đơn giá</th>
-                            <th>Mô tả</th>
-                            <th>Hành động</th>
+                            <th>Số lần sử dụng</th>
+                            <th>Tổng giờ sử dụng</th>
+                            <th>Tổng doanh thu</th>
+                            <th>Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
                         @if (Model != null && Model.Count > 0)
                         {
-                            int stt = 1; // Biến đếm STT
-                            foreach (var may in Model)
+                            int stt = 1;
+                            foreach (var item in Model)
                             {
                                 <tr>
                                     <td>@stt</td>
-                                    <td>@may.MaMay</td>
-                                    <td>@may.TenMay</td>
-                                    <td>@may.TrangThai</td>
-                                    <td>@may.DonGia VNĐ</td>
-                                    <td>@may.MoTa</td>
+                                    <td>@item.MaMay</td>
+                                    <td>@item.TenMay</td>
+                                    <td>@item.TrangThai</td>
+                                    <td>@item.SoLanSuDung</td>
+                                    <td>@item.TongGioSuDung.ToString("0.00") giờ</td>
+                                    <td>@item.TongDoanhThu.ToString("N2") VNĐ</td>
                                     <td>
-                                        <a href="/Admin/ChinhSuaMayTinh/@may.MaMay" class="btn btn-warning btn-sm">Chỉnh sửa</a>
-                                        <a href="/Admin/XoaMayTinh/@may.MaMay" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa máy tính này?');">Xóa</a>
+                                        <a href="/Admin/ThongKeChiTietMay?maMay=@item.MaMay" class="btn btn-info btn-sm">Xem chi tiết</a>
                                     </td>
                                 </tr>
-                                stt++; // Tăng STT
+                                stt++;
                             }
                         }
                         else
                         {
                             <tr>
-                                <td colspan="6" class="text-center">Không có máy tính nào.</td>
+                                <td colspan="8" class="text-center">Không có dữ liệu thống kê.</td>
                             </tr>
                         }
                     </tbody>
@@ -130,3 +113,26 @@
         </div>
     </div>
 </div>
+
+<style>
+    h2 {
+        font-weight: bold;
+    }
+
+    .table {
+        font-size: 16px;
+    }
+
+    .table th {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .btn {
+        font-size: 14px;
+    }
+
+    .vh-100 {
+        height: 100vh;
+    }
+</style>

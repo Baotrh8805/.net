@@ -30,50 +30,53 @@ namespace Project.Controllers
             return View();
         }
         
-        [HttpPost]
-        public IActionResult DangNhap(DangNhapViewModel model)
+       [HttpPost]
+public IActionResult DangNhap(DangNhapViewModel model)
+{
+    if (ModelState.IsValid)
+    {
+        var nguoiDung = _context.NguoiDungs
+            .FirstOrDefault(nd => nd.TenDangNhap == model.Username && nd.MatKhau == model.Password);
+
+        if (nguoiDung != null)
         {
-            if (ModelState.IsValid)
+            // Tạo Claims
+            var claims = new List<Claim>
             {
-                var nguoiDung = _context.NguoiDungs
-                    .FirstOrDefault(nd => nd.TenDangNhap == model.Username && nd.MatKhau == model.Password);
-        
-                if (nguoiDung != null)
-                {
-                    // Tạo Claims
-                    var claims = new List<Claim>
-                    {
-                        new Claim(ClaimTypes.Name, nguoiDung.TenDangNhap),
-                        new Claim("MaNguoiDung", nguoiDung.MaNguoiDung), // Lưu ID người dùng
-                        new Claim(ClaimTypes.Role, nguoiDung.Role) // Lưu vai trò
-                    };
-        
-                    // Tạo ClaimsIdentity
-                    var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-        
-                    // Tạo ClaimsPrincipal
-                    var principal = new ClaimsPrincipal(identity);
-        
-                    // Đăng nhập người dùng
-                    HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-        
-                    // Chuyển hướng dựa trên vai trò
-                    if (nguoiDung.Role == "Khách")
-                    {
-                        return RedirectToAction("Home", "KhachHang");
-                    }
-                    else if (nguoiDung.Role == "Admin")
-                    {
-                        return RedirectToAction("Home", "Admin");
-                    }
-                }
-        
-                ModelState.AddModelError("", "Tên đăng nhập hoặc mật khẩu không đúng.");
+                new Claim(ClaimTypes.Name, nguoiDung.TenDangNhap),
+                new Claim("MaNguoiDung", nguoiDung.MaNguoiDung), // Lưu ID người dùng
+                new Claim(ClaimTypes.Role, nguoiDung.Role) // Lưu vai trò
+            };
+
+            // Tạo ClaimsIdentity
+            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            // Tạo ClaimsPrincipal
+            var principal = new ClaimsPrincipal(identity);
+
+            // Đăng nhập người dùng
+            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+
+            // Thêm thông báo đăng nhập thành công
+            TempData["Success"] = $"Đăng nhập thành công! Xin chào {nguoiDung.HoTen}.";
+
+            // Chuyển hướng dựa trên vai trò
+            if (nguoiDung.Role == "Khách")
+            {
+                return RedirectToAction("Home", "KhachHang");
             }
-        
-            return View(model);
+            else if (nguoiDung.Role == "Admin")
+            {
+                return RedirectToAction("Home", "Admin");
+            }
         }
-        // Đăng Nhập    
+
+        ModelState.AddModelError("", "Tên đăng nhập hoặc mật khẩu không đúng.");
+    }
+
+    return View(model);
+}
+        // Đăng ký    
         [HttpGet]
         public IActionResult DangKy()
         {

@@ -5,6 +5,8 @@ using Project.Models.Home;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using Project.Models.KhachHang;
+
 
 namespace Project.Controllers
 {
@@ -18,7 +20,7 @@ namespace Project.Controllers
             _context = context;
         }
 
-                public IActionResult Home()
+        public IActionResult Home()
         {
             // Lấy MaNguoiDung từ Claims
             var maNguoiDung = User.FindFirst("MaNguoiDung")?.Value;
@@ -49,13 +51,14 @@ namespace Project.Controllers
         }
 
         [HttpGet]
-        public IActionResult QuanLyNguoiDung()
+        public IActionResult QuanLyNguoiDung(string search)
         {
-            // Lấy danh sách người dùng từ cơ sở dữ liệu và sắp xếp Admin lên đầu
-            var users = _context.NguoiDungs
-                .Where(nd => nd.TrangThai == "Hoạt động") // Chỉ lấy người dùng có trạng thái "Hoạt động"
-                .OrderByDescending(nd => nd.Role == "Admin") // Sắp xếp Admin lên đầu
-                .ThenBy(nd => nd.HoTen) // Sắp xếp theo Họ tên (nếu cần)
+            // Lấy danh sách người dùng từ cơ sở dữ liệu
+            var userList = _context.NguoiDungs
+                .Where(nd => (string.IsNullOrEmpty(search) || 
+                             nd.TenDangNhap.Contains(search) || 
+                             nd.HoTen.Contains(search) || 
+                             (nd.SoDienThoai != null && nd.SoDienThoai.Contains(search))) && nd.TrangThai != "Đã xóa")
                 .Select(nd => new QuanLyNguoiDungViewModel
                 {
                     MaNguoiDung = nd.MaNguoiDung,
@@ -66,86 +69,73 @@ namespace Project.Controllers
                 })
                 .ToList();
         
-            return View(users);
-        }
+            // Lưu từ khóa tìm kiếm vào ViewData để hiển thị lại trên giao diện
+            ViewData["Search"] = search;
+        
+            return View(userList);
+        }        
+        
+       [HttpGet]
+public IActionResult ThemNguoiDung()
+{
+    var model = new ThemNguoiDungViewModel();
+    Console.WriteLine("Model initialized: " + (model != null));
+    return View(model);
+}
 
-        [HttpGet]
-        public IActionResult ThemNguoiDung()
-        {
-            return View();
-        }
-        
-        [HttpPost]
-        public IActionResult ThemNguoiDung(DangKyViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                // Kiểm tra xem tên đăng nhập đã tồn tại chưa
-                var existingUserByUsername = _context.NguoiDungs
-                    .FirstOrDefault(nd => nd.TenDangNhap == model.Username);
-        
-                if (existingUserByUsername != null)
-                {
-                    ModelState.AddModelError("Username", "Tên đăng nhập đã tồn tại.");
-                    return View(model);
-                }
-        
-                // Kiểm tra xem số điện thoại đã tồn tại chưa
-                var existingUserByPhone = _context.NguoiDungs
-                    .FirstOrDefault(nd => nd.SoDienThoai == model.PhoneNumber);
-        
-                if (existingUserByPhone != null)
-                {
-                    ModelState.AddModelError("PhoneNumber", "Số điện thoại đã được sử dụng.");
-                    return View(model);
-                }
+     [HttpPost]
+public IActionResult ThemNguoiDung(ThemNguoiDungViewModel model)
+{
+    if (ModelState.IsValid)
+    {
+        // Kiểm tra tên đăng nhập đã tồn tại (bỏ qua tài khoản có trạng thái "Đã xóa")
+        var existingUser = _context.NguoiDungs
+            .FirstOrDefault(nd => nd.TenDangNhap == model.TenDangNhap && nd.TrangThai != "Đã xóa");
 
-                // Kiểm tra số điện thoại có đủ 10 số không
-                if (model.PhoneNumber == null || model.PhoneNumber.Length != 10 || !model.PhoneNumber.All(char.IsDigit))
-                {
-                    ModelState.AddModelError("PhoneNumber", "Số điện thoại phải có đúng 10 chữ số.");
-                    return View(model);
-                }
-        
-                // Lấy ID lớn nhất hiện có trong cơ sở dữ liệu
-                var lastUser = _context.NguoiDungs
-                    .OrderByDescending(nd => nd.MaNguoiDung)
-                    .FirstOrDefault();
-        
-                string newId;
-                if (lastUser == null)
-                {
-                    // Nếu chưa có người dùng nào, bắt đầu từ 0000000001
-                    newId = "0000000001";
-                }
-                else
-                {
-                    // Tăng ID lên 1
-                    newId = (long.Parse(lastUser.MaNguoiDung) + 1).ToString("D10");
-                }
-        
-                // Tạo người dùng mới
-                var nguoiDungMoi = new NguoiDung
-                {
-                    MaNguoiDung = newId, // Gán ID mới
-                    HoTen = model.FullName ?? string.Empty,
-                    TenDangNhap = model.Username ?? string.Empty,
-                    MatKhau = model.Password ?? string.Empty,
-                    SoDienThoai = model.PhoneNumber,
-                    Role = model.Role ?? string.Empty,
-                    NgayTaoTaiKhoan = DateTime.Now, // Gán ngày tạo tài khoản
-                    TrangThai = "Hoạt động" // Gán trạng thái mặc định
-                };
-        
-                _context.NguoiDungs.Add(nguoiDungMoi);
-                _context.SaveChanges();
-        
-                // Đăng ký thành công
-                return RedirectToAction("QuanLyNguoiDung");
-            }
+        if (existingUser != null)
+        {
+            ModelState.AddModelError("TenDangNhap", "Tên đăng nhập đã tồn tại.");
             return View(model);
         }
 
+        // Kiểm tra số điện thoại đã tồn tại (bỏ qua tài khoản có trạng thái "Đã xóa")
+        var existingPhone = _context.NguoiDungs
+            .FirstOrDefault(nd => nd.SoDienThoai == model.SoDienThoai && nd.TrangThai != "Đã xóa");
+
+        if (existingPhone != null)
+        {
+            ModelState.AddModelError("SoDienThoai", "Số điện thoại đã được sử dụng.");
+            return View(model);
+        }
+
+        // Tạo ID mới cho người dùng
+        var lastUser = _context.NguoiDungs.OrderByDescending(nd => nd.MaNguoiDung).FirstOrDefault();
+        string newId = lastUser == null ? "0000000001" : (long.Parse(lastUser.MaNguoiDung) + 1).ToString("D10");
+
+        // Thêm người dùng mới
+        var newUser = new NguoiDung
+        {
+            MaNguoiDung = newId,
+            TenDangNhap = model.TenDangNhap,
+            MatKhau = model.MatKhau,
+            HoTen = model.HoTen,
+            SoDienThoai = model.SoDienThoai,
+            Role = model.Role,
+            TrangThai = "Hoạt động",
+            NgayTaoTaiKhoan = DateTime.Now
+        };
+
+        _context.NguoiDungs.Add(newUser);
+        _context.SaveChanges();
+
+        TempData["Success"] = "Thêm người dùng thành công.";
+        return RedirectToAction("QuanLyNguoiDung");
+    }
+
+    return View(model);
+}
+        
+        
         [HttpGet]
         public IActionResult ChinhSuaNguoiDung(string id)
         {
@@ -290,22 +280,25 @@ namespace Project.Controllers
         }
 
         [HttpGet]
-        public IActionResult QuanLyMayTinh()
+        public IActionResult QuanLyMayTinh(string search)
         {
             // Lấy danh sách máy tính từ cơ sở dữ liệu
-            var mayTinhList = _context.MayTinhs
-                .Where(mt => mt.TrangThai != "Đã xóa") // Chỉ lấy máy tính không bị xóa
-                .OrderBy(mt => mt.MaMay) // Sắp xếp theo vị trí
+                var mayTinhList = _context.MayTinhs
+                .Where(mt => (string.IsNullOrEmpty(search) || 
+                             mt.TenMay.Contains(search) || 
+                             mt.MaMay.Contains(search) || 
+                             (mt.MoTa != null && mt.MoTa.Contains(search))) && mt.TrangThai != "Đã xóa") // Tìm kiếm theo tên, mã máy, hoặc mô tả
                 .Select(mt => new QuanLyMayTinhViewModel
                 {
                     MaMay = mt.MaMay,
                     TenMay = mt.TenMay,
                     TrangThai = mt.TrangThai,
-                    DonGia = (int)mt.DonGia,
+                    DonGia = (double) mt.DonGia,
                     MoTa = mt.MoTa
                 })
                 .ToList();
-        
+            // Lưu từ khóa tìm kiếm vào ViewData để hiển thị lại trên giao diện
+            ViewData["Search"] = search;
             return View(mayTinhList);
         }
 
@@ -443,41 +436,232 @@ namespace Project.Controllers
             return View(model);
         }
 
+       
+
         [HttpGet]
-        public IActionResult XoaMayTinh(string id)
+        public IActionResult ThongKeTheoMay(string search)
         {
-            if (string.IsNullOrEmpty(id))
+            var mayTinhList = _context.MayTinhs
+                .Where(mt => string.IsNullOrEmpty(search) || mt.TenMay.Contains(search) || mt.MaMay.Contains(search))
+                .Select(mt => new
+                {
+                    mt.MaMay,
+                    mt.TenMay,
+                    mt.TrangThai,
+                    mt.MoTa,
+                    SuDungMays = _context.SuDungMays
+                        .Where(sdm => sdm.MaMay == mt.MaMay)
+                        .ToList() // chuyển sang client-side xử lý
+                })
+                .AsEnumerable()
+                .Select(item => new ThongKeViewModel
+                {
+                    MaMay = item.MaMay,
+                    TenMay = item.TenMay,
+                    TrangThai = item.TrangThai,
+                    MoTa = item.MoTa,
+                    SoLanSuDung = item.SuDungMays.Count,
+                    TongGioSuDung = item.SuDungMays
+                        .Where(sdm => sdm.ThoiGianKetThuc.HasValue)
+                        .Sum(sdm => (sdm.ThoiGianKetThuc.Value - sdm.ThoiGianBatDau).TotalHours),
+                    TongDoanhThu = item.SuDungMays.Sum(sdm => sdm.TongTien ?? 0)
+                })
+                .OrderByDescending(item => item.TongDoanhThu) // Sắp xếp theo doanh thu giảm dần
+                .ToList();
+
+            ViewData["Search"] = search;
+            return View(mayTinhList);
+        }
+    
+        [HttpGet]
+        public IActionResult ThongKeChiTietMay(string maMay)
+        {
+            if (string.IsNullOrEmpty(maMay))
             {
-                TempData["Error"] = "ID máy tính không hợp lệ.";
-                return RedirectToAction("QuanLyMayTinh");
+                TempData["Error"] = "Mã máy không hợp lệ.";
+                return RedirectToAction("ThongKeTheoMay");
             }
         
-            var mayTinh = _context.MayTinhs.FirstOrDefault(mt => mt.MaMay == id);
+            var mayTinh = _context.MayTinhs.FirstOrDefault(mt => mt.MaMay == maMay);
             if (mayTinh == null)
             {
                 TempData["Error"] = "Không tìm thấy máy tính.";
-                return RedirectToAction("QuanLyMayTinh");
+                return RedirectToAction("ThongKeTheoMay");
             }
-        
-            if (mayTinh.TrangThai == "Hoạt động")
+            
+            var chiTiet = _context.SuDungMays
+            .Where(sdm => sdm.MaMay == maMay)
+            .Select(sdm => new ThongKeViewModel
             {
-                TempData["Error"] = "Máy tính đang được sử dụng. Không thể xóa.";
-                return RedirectToAction("QuanLyMayTinh");
-            }
+                MaMay = maMay,
+                TenMay = mayTinh.TenMay,
+                ThoiGianBatDau = sdm.ThoiGianBatDau,
+                ThoiGianKetThuc = sdm.ThoiGianKetThuc,
+                TongDoanhThu = sdm.TongTien ?? 0,
+                TenNguoiDung = _context.NguoiDungs
+                    .Where(nd => nd.MaNguoiDung == sdm.MaNguoiDung)
+                    .Select(nd => nd.HoTen)
+                    .FirstOrDefault(),
+                SoDienThoai = _context.NguoiDungs
+                    .Where(nd => nd.MaNguoiDung == sdm.MaNguoiDung)
+                    .Select(nd => nd.SoDienThoai)
+                    .FirstOrDefault()
+            })
+            .ToList();
         
-            var hasHistory = _context.SuDungMays.Any(sdm => sdm.MaMay == id);
-            if (hasHistory)
+            ViewData["TenMay"] = mayTinh.TenMay;
+            ViewData["MaMay"] = maMay;
+        
+            return View(chiTiet);
+        }
+         
+        [HttpGet]
+        public IActionResult ThongKeTheoThoiGian(DateTime? startDate, DateTime? endDate)
+        {
+            // Nếu không chọn ngày, mặc định lấy toàn bộ dữ liệu
+            if (!startDate.HasValue || !endDate.HasValue)
             {
-                TempData["Warning"] = "Máy tính này có lịch sử sử dụng. Nên đặt trạng thái máy về 'Bảo trì' thay vì xóa.";
+                startDate = new DateTime(2025, 1, 1); // Giá trị nhỏ nhất hợp lệ cho SQL Server
+                endDate = DateTime.Now; // Mặc định là ngày hiện tại
             }
         
-            mayTinh.TrangThai = "Đã xóa";
-            mayTinh.ThoiGianXoa = DateTime.Now;
+            // Lấy danh sách thống kê theo khoảng thời gian
+            var thongKeList = _context.SuDungMays
+                .Where(sdm => sdm.ThoiGianBatDau >= startDate && sdm.ThoiGianKetThuc <= endDate)
+                .GroupBy(sdm => sdm.MaMay) // Nhóm theo mã máy
+                .Select(group => new ThongKeViewModel
+                {
+                    MaMay = group.Key,
+                    TenMay = _context.MayTinhs
+                        .Where(mt => mt.MaMay == group.Key)
+                        .Select(mt => mt.TenMay)
+                        .FirstOrDefault(),
+                    TongDoanhThu = group.Sum(sdm => sdm.TongTien ?? 0) // Tính tổng doanh thu trong khoảng thời gian
+                })
+                .OrderByDescending(sdm => sdm.TongDoanhThu) // Sắp xếp theo doanh thu giảm dần
+                .ToList();
         
+            // Truyền dữ liệu ngày bắt đầu và kết thúc để hiển thị lại trên giao diện
+            ViewData["StartDate"] = startDate.Value.ToString("yyyy-MM-dd");
+            ViewData["EndDate"] = endDate.Value.ToString("yyyy-MM-dd");
+        
+            return View(thongKeList);
+        }
+
+        [HttpGet]
+        public IActionResult ThongKeChiTietThoiGian(string maMay, DateTime? startDate, DateTime? endDate)
+        {
+            if (string.IsNullOrEmpty(maMay))
+            {
+                TempData["Error"] = "Mã máy không hợp lệ.";
+                return RedirectToAction("ThongKeTheoMay");
+            }
+        
+            var mayTinh = _context.MayTinhs.FirstOrDefault(mt => mt.MaMay == maMay);
+            if (mayTinh == null)
+            {
+                TempData["Error"] = "Không tìm thấy máy tính.";
+                return RedirectToAction("ThongKeTheoMay");
+            }
+        
+            // Nếu không chọn ngày, đặt giá trị mặc định
+            if (!startDate.HasValue)
+            {
+                startDate = new DateTime(1753, 1, 1); // Giá trị nhỏ nhất hợp lệ cho SQL Server
+            }
+            if (!endDate.HasValue)
+            {
+                endDate = DateTime.Now; // Mặc định là ngày hiện tại
+            }
+        
+            // Lấy danh sách chi tiết sử dụng máy theo khoảng thời gian
+            var chiTiet = _context.SuDungMays
+                .Where(sdm => sdm.MaMay == maMay && sdm.ThoiGianBatDau >= startDate && sdm.ThoiGianKetThuc <= endDate)
+                .Select(sdm => new ThongKeViewModel
+                {
+                    MaMay = maMay,
+                    TenMay = mayTinh.TenMay,
+                    ThoiGianBatDau = sdm.ThoiGianBatDau,
+                    ThoiGianKetThuc = sdm.ThoiGianKetThuc,
+                    TongDoanhThu = sdm.TongTien ?? 0,
+                    TenNguoiDung = _context.NguoiDungs
+                        .Where(nd => nd.MaNguoiDung == sdm.MaNguoiDung)
+                        .Select(nd => nd.HoTen)
+                        .FirstOrDefault(),
+                    SoDienThoai = _context.NguoiDungs
+                        .Where(nd => nd.MaNguoiDung == sdm.MaNguoiDung)
+                        .Select(nd => nd.SoDienThoai)
+                        .FirstOrDefault()
+                })
+                .OrderByDescending(sdm => sdm.ThoiGianBatDau) // Sắp xếp theo thời gian bắt đầu giảm dần
+                .ToList();
+        
+            // Truyền dữ liệu ngày bắt đầu và kết thúc để hiển thị lại trên giao diện
+            ViewData["StartDate"] = startDate.Value.ToString("yyyy-MM-dd");
+            ViewData["EndDate"] = endDate.Value.ToString("yyyy-MM-dd");
+            ViewData["TenMay"] = mayTinh.TenMay;
+            ViewData["MaMay"] = maMay;
+        
+            return View(chiTiet);
+        }
+[HttpGet]
+        public IActionResult XoaNguoiDung(string userId)
+        {
+            Console.WriteLine($"MaNguoiDung nhận được 123: {userId}");
+            if (string.IsNullOrEmpty(userId))
+            {
+                TempData["Error"] = "ID người dùng không hợp lệ.";
+                return RedirectToAction("QuanLyNguoiDung");
+            }
+        
+            var user = _context.NguoiDungs.FirstOrDefault(u => u.MaNguoiDung == userId);
+            if (user == null)
+            {
+                TempData["Error"] = "Không tìm thấy người dùng.";
+                return RedirectToAction("QuanLyNguoiDung");
+            }
+            // Kiểm tra nếu người dùng có dữ liệu liên quan
+            var hasRelatedData = _context.SuDungMays.Any(sdm => sdm.MaNguoiDung == userId);
+
+            // Tạo ViewModel để truyền dữ liệu sang View
+            var viewModel = new XoaNguoiDungViewModel
+            {
+                MaNguoiDung = user.MaNguoiDung,
+                HoTen = user.HoTen,
+                SoDienThoai = user.SoDienThoai,
+                CoDuLieuLienQuan = hasRelatedData,
+                SoDu = user.SoDu ?? 0
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult XoaNguoiDungConfirm (String userId)
+        {
+            Console.WriteLine($"MaNguoiDung nhận được: {userId}");
+            if (string.IsNullOrEmpty(userId))
+            {
+                TempData["Error"] = "ID người dùng không hợp lệ.";
+                return RedirectToAction("QuanLyNguoiDung");
+            }
+        
+            var user = _context.NguoiDungs.FirstOrDefault(u => u.MaNguoiDung == userId);
+            if (user == null)
+            {
+                TempData["Error"] = "Không tìm thấy người dùng.";
+                return RedirectToAction("QuanLyNguoiDung");
+            }
+        
+            // Đánh dấu người dùng là đã xóa
+            user.TrangThai = "Đã xóa";
+            user.NgayXoaTaiKhoan = DateTime.Now; // Ghi lại thời gian xóa tài khoản
+    
+            // Lưu thay đổi vào cơ sở dữ liệu
             _context.SaveChanges();
-        
-            TempData["Message"] = "Máy tính đã được chuyển sang trạng thái 'Đã xóa'.";
-            return RedirectToAction("QuanLyMayTinh");
+    
+            TempData["Message"] = "Xóa người dùng thành công.";
+            return RedirectToAction("QuanLyNguoiDung");
         }
     }
 }
